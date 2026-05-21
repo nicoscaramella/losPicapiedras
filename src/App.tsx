@@ -214,12 +214,12 @@ export default function App() {
                 <span className="text-[11px] text-gray-500 uppercase font-mono-data tracking-wider">de Origen</span>
               </div>
               <div>
-                <span className="font-serif text-2xl sm:text-3xl font-bold text-[#3C3830] block">+25</span>
+                <span className="font-serif text-2xl sm:text-3xl font-bold text-[#3C3830] block">+30</span>
                 <span className="text-[11px] text-gray-500 uppercase font-mono-data tracking-wider">Años de Tradición</span>
               </div>
               <div>
                 <span className="font-serif text-2xl sm:text-3xl font-bold text-[#3C3830] block">Envío</span>
-                <span className="text-[11px] text-gray-500 uppercase font-mono-data tracking-wider">A todo el país</span>
+                <span className="text-[11px] text-gray-500 uppercase font-mono-data tracking-wider">A todo AMBA Y CABA</span>
               </div>
             </div>
 
