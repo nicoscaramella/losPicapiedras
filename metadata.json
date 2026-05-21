@@ -1,0 +1,6 @@
+{
+  "name": "Los Picapiedras - Revestimientos",
+  "description": "Premium landing page para la empresa familiar Los Picapiedras, dedicada a la venta y colocación de revestimientos de piedras naturales: Laja San Luis, Pórfido, Mármol Travertino, Piedra Zapala, Piedra Morisca y más.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
