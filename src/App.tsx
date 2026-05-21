@@ -59,8 +59,8 @@ export default function App() {
 
   // Calculator States
   const [calcStone, setCalcStone] = useState<string>('riojana'); // Default Piedra Riojana
-  const [widthInput, setWidthInput] = useState<string>('4.5');
-  const [heightInput, setHeightInput] = useState<string>('3.0');
+  const [widthInput, setWidthInput] = useState<string>(''); // Empty default, transparent placeholder
+  const [heightInput, setHeightInput] = useState<string>(''); // Empty default, transparent placeholder
   const [useCase, setUseCase] = useState<'pared' | 'piso'>('pared');
   const [wasteFactor, setWasteFactor] = useState<boolean>(true);
   const [includeAdhesive, setIncludeAdhesive] = useState<boolean>(true);
@@ -79,7 +79,10 @@ export default function App() {
   const handleCalculate = () => {
     const w = parseFloat(widthInput);
     const h = parseFloat(heightInput);
-    if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) return;
+    if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) {
+      setQuoteResult(null);
+      return;
+    }
 
     let area = w * h;
     if (wasteFactor) {
@@ -704,6 +707,7 @@ export default function App() {
                     type="number"
                     step="0.1"
                     min="0.1"
+                    placeholder="4.5"
                     value={widthInput}
                     onChange={(e) => setWidthInput(e.target.value)}
                     className="w-full bg-white border border-[#E2DDD2] px-3 py-2 text-sm rounded-sm text-gray-800 focus:outline-none focus:border-stone-500"
@@ -715,6 +719,7 @@ export default function App() {
                     type="number"
                     step="0.1"
                     min="0.1"
+                    placeholder="3.0"
                     value={heightInput}
                     onChange={(e) => setHeightInput(e.target.value)}
                     className="w-full bg-white border border-[#E2DDD2] px-3 py-2 text-sm rounded-sm text-gray-800 focus:outline-none focus:border-stone-500"
@@ -801,14 +806,10 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-black/20 p-4 rounded-sm border border-white/5 font-mono-data">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-black/20 p-4 rounded-sm border border-white/5 font-mono-data">
                   <div className="text-center sm:text-left">
                     <span className="text-[9px] uppercase tracking-wider text-gray-400 block">Peso Estimado:</span>
                     <span className="text-lg font-bold text-amber-100">{quoteResult.totalWeightKg.toLocaleString('es-AR')} kg</span>
-                  </div>
-                  <div className="text-center sm:text-left">
-                    <span className="text-[9px] uppercase tracking-wider text-gray-400 block">Pallets sugeridos:</span>
-                    <span className="text-lg font-bold text-amber-100">{quoteResult.palletsNeeded} {quoteResult.palletsNeeded === 1 ? 'Pallet' : 'Pallets'}</span>
                   </div>
                   <div className="text-center sm:text-left">
                     <span className="text-[9px] uppercase tracking-wider text-gray-400 block">Pegamento Flex:</span>
