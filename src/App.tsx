@@ -20,7 +20,8 @@ import {
   User,
   ExternalLink,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { STONES, SCENARIOS } from './data';
@@ -140,14 +141,14 @@ export default function App() {
 
       {/* Elegante Header Flotante */}
       <header className="sticky top-0 z-50 bg-[#FBFBF9]/90 backdrop-blur-md border-b border-[#EBEBE4] px-4 sm:px-8 py-4 transition-all duration-300">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 bg-[#3C3830] flex items-center justify-center rounded-sm text-[#FBFBF9] font-serif font-bold text-xl tracking-wider">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <div className="h-10 w-10 bg-[#3C3830] flex items-center justify-center rounded-sm text-[#FBFBF9] font-serif font-bold text-xl tracking-wider flex-shrink-0">
               L|P
             </div>
             <div>
-              <span className="font-serif text-lg font-bold tracking-tight text-[#3C3830] block">Los Picapiedras</span>
-              <span className="text-[10px] uppercase tracking-widest text-[#B3AFA5] font-mono-data font-semibold block">Revestimientos de Origen</span>
+              <span className="font-serif text-base sm:text-lg font-bold tracking-tight text-[#3C3830] block leading-tight">Los Picapiedras</span>
+              <span className="text-[10px] uppercase tracking-widest text-[#B3AFA5] font-mono-data font-semibold hidden sm:block">Revestimientos de Origen</span>
             </div>
           </div>
 
@@ -157,16 +158,17 @@ export default function App() {
             <a href="#calculadora" className="hover:text-[#3C3830] transition-colors">Calculador Técnico</a>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             <a
               href={`https://wa.me/${getActiveWhatsAppNumber()}?text=Hola,%20vengo%20de%20la%20landing%20page%20de%20Los%20Picapiedras%20y%20quiero%20consultar%20por%20revestimientos.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#3C3830] hover:bg-[#524E43] text-[#FBFBF9] px-4 py-2 text-xs font-semibold tracking-wide rounded-sm flex items-center gap-2 transition-all shadow-sm"
+              className="bg-[#3C3830] hover:bg-[#524E43] text-[#FBFBF9] px-3 sm:px-4 py-2 text-xs font-semibold tracking-wide rounded-sm flex items-center gap-2 transition-all shadow-sm"
               id="cta_whatsapp_header"
             >
-              <Phone className="w-3.5 h-3.5" />
-              <span>Consultar Presupuesto</span>
+              <Phone className="w-3.5 h-3.5 flex-shrink-0" />
+              <span className="hidden sm:inline">Consultar Presupuesto</span>
+              <span className="inline sm:hidden">Consultar</span>
             </a>
           </div>
         </div>
@@ -406,9 +408,18 @@ export default function App() {
               initial={{ scale: 0.95, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 15 }}
-              className="bg-[#FBFBF9] max-w-2xl w-full rounded-sm overflow-hidden shadow-2xl border border-gray-300 grid grid-cols-1 md:grid-cols-2"
+              className="bg-[#FBFBF9] max-w-2xl w-full rounded-sm overflow-y-auto md:overflow-hidden max-h-[90vh] md:max-h-[600px] shadow-2xl border border-gray-300 grid grid-cols-1 md:grid-cols-2 relative"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Botón Cerrar X flotante */}
+              <button
+                onClick={() => setSelectedStone(null)}
+                className="absolute top-3 right-3 z-30 bg-black/50 hover:bg-black/75 backdrop-blur-sm text-white rounded-full p-1.5 transition-all border border-white/10"
+                aria-label="Cerrar modal"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
               {/* Media on left */}
               <div className="h-72 md:h-full relative bg-stone-900 overflow-hidden group">
                 <AnimatePresence initial={false} mode="wait">
@@ -480,7 +491,7 @@ export default function App() {
               </div>
 
               {/* Data on right */}
-              <div className="p-6 md:p-8 flex flex-col justify-between space-y-4">
+              <div className="p-6 md:p-8 flex flex-col justify-between space-y-4 md:max-h-[600px] md:overflow-y-auto">
                 <div>
                   <div className="flex justify-between items-start">
                     <div>
