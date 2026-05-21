@@ -15,15 +15,6 @@ export interface Stone {
   galleryUrls?: string[];
 }
 
-export interface Scenario {
-  id: string;
-  name: string;
-  description: string;
-  bgUrl: string; // The base environment backdrop
-  // Coordinates/styles to overlay the selected stone texture smoothly
-  overlayClasses: string;
-}
-
 export interface DirectQuoteQuery {
   stoneId: string;
   areaM2: number;

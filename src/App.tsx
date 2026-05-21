@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import {
-  Layers,
   MapPin,
   Sparkles,
   Maximize2,
@@ -24,8 +23,8 @@ import {
   X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { STONES, SCENARIOS } from './data';
-import { Stone, Scenario, QuoteResult } from './types';
+import { STONES } from './data';
+import { Stone, QuoteResult } from './types';
 
 // Helper function to get active WhatsApp number based on the day of the week
 // Lunes, Miércoles, Viernes -> Ciro (+54 9 11 5736 2228)
@@ -54,9 +53,6 @@ export default function App() {
     ? selectedStone.galleryUrls
     : selectedStone ? [selectedStone.imageUrl] : [];
 
-  // Scenario Simulator States
-  const [activeScenario, setActiveScenario] = useState<Scenario>(SCENARIOS[0]);
-  const [simulatorStone, setSimulatorStone] = useState<Stone>(STONES[3]); // Default Travertino
 
   // Calculator States
   const [calcStone, setCalcStone] = useState<string>('riojana'); // Default Piedra Riojana
@@ -231,11 +227,12 @@ export default function App() {
           <div className="lg:col-span-6 relative">
             <div className="relative z-10 rounded-sm overflow-hidden h-[320px] sm:h-[450px] shadow-2xl border-4 border-[#FBFBF9]">
               <img
-                src='/images/Travertino/travertino vivienda.jpg'
+                src='/images/Travertino/travertino_vivienda.webp'
                 alt="Casa moderna con revestimiento de piedras naturales"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
                 id="hero_main_img"
+                fetchPriority="high"
               />
               {/* Overlay styling and fine accents */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white flex flex-col justify-end">
@@ -326,6 +323,7 @@ export default function App() {
                     alt={stone.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transformation duration-500"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
 
                   {/* Absolute badgets on image */}
@@ -431,8 +429,21 @@ export default function App() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover cursor-grab active:cursor-grabbing touch-pan-y select-none"
                     referrerPolicy="no-referrer"
+                    drag={galleryImages.length > 1 ? "x" : false}
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.4}
+                    onDragEnd={(_, info) => {
+                      const swipeThreshold = 50;
+                      if (info.offset.x < -swipeThreshold) {
+                        // Dragged left -> Next image
+                        setCurrentImageIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+                      } else if (info.offset.x > swipeThreshold) {
+                        // Dragged right -> Previous image
+                        setCurrentImageIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+                      }
+                    }}
                   />
                 </AnimatePresence>
 
@@ -561,122 +572,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Dynamic Background Visualizer Section */}
-      {/* 
-      <section id="simulador" className="py-20 bg-[#F1EFEA] border-y border-[#EBEBE4]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-
-          <div className="max-w-xl mb-12">
-            <div className="inline-flex items-center gap-1 bg-[#E2DDD2] text-gray-700 text-[10px] font-mono-data uppercase font-semibold px-2 py-0.5 rounded-sm tracking-wider mb-2">
-              <Layers className="w-3 h-3 text-amber-900" />
-              Simulador Interactivo de Revestimiento
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#3C3830] tracking-tight">
-              Visualizá la Piedra en tu Obra
-            </h2>
-            <p className="text-gray-600 text-sm mt-2">
-              Seleccioná un ambiente residencial y después hacé clic en las diferentes piedras para visualizar instantáneamente cómo cambian el carácter, la luz y la suntuosidad de las texturas en frentes, fuegos y piletas.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-
-            <div className="lg:col-span-4 flex flex-col justify-between space-y-6 bg-[#FBFBF9] p-6 rounded-sm border border-[#EBEBE4]">
-
-              <div className="space-y-4">
-                <span className="text-[11px] font-mono-data uppercase font-semibold text-gray-400 tracking-wider block">Paso 1: Elegí un Ambiente</span>
-                <div className="space-y-2">
-                  {SCENARIOS.map((sc) => (
-                    <button
-                      key={sc.id}
-                      onClick={() => setActiveScenario(sc)}
-                      className={`w-full text-left p-4 rounded-sm transition-all border ${activeScenario.id === sc.id
-                        ? 'border-[#3C3830] bg-[#3C3830]/5 shadow-sm'
-                        : 'border-transparent hover:bg-gray-100 text-gray-600'
-                        }`}
-                    >
-                      <h4 className="font-serif font-bold text-[#3C3830] text-sm">{sc.name}</h4>
-                      <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">{sc.description}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-[#EBEBE4] space-y-3">
-                <span className="text-[11px] font-mono-data uppercase font-semibold text-gray-400 tracking-wider block">Piedra Aplicada Actualmente:</span>
-                <div className="flex items-center gap-3 bg-[#F1EFEA] p-3 rounded-sm border border-[#E2DDD2]">
-                  <img
-                    src={simulatorStone.imageUrl}
-                    alt={simulatorStone.name}
-                    className="w-12 h-12 object-cover rounded-sm"
-                  />
-                  <div>
-                    <h5 className="font-serif text-xs font-bold text-[#3C3830]">{simulatorStone.name}</h5>
-                    <span className="text-[10px] text-gray-500 italic block">{simulatorStone.colors[0]} y mixtos</span>
-                  </div>
-                </div>
-                <div className="text-[11px] text-[#59554B] italic leading-tight">
-                  "{simulatorStone.vibe}"
-                </div>
-              </div>
-
-            </div>
-
-            <div className="lg:col-span-8 flex flex-col space-y-4">
-              <div className="relative rounded-sm overflow-hidden h-[360px] sm:h-[460px] shadow-lg bg-gray-900 border border-[#EBEBE4]">
-                <img
-                  src={activeScenario.bgUrl}
-                  alt={activeScenario.name}
-                  className="w-full h-full object-cover transition-all duration-700"
-                  referrerPolicy="no-referrer"
-                />
-
-                <div
-                  className={activeScenario.overlayClasses}
-                  style={{
-                    backgroundImage: `url(${simulatorStone.imageUrl})`,
-                    backgroundBlendMode: 'overlay',
-                    backgroundColor: 'rgba(60, 56, 48, 0.15)'
-                  }}
-                />
-
-                <div className="absolute top-4 left-4 bg-[#3C3830]/90 text-white p-3 rounded-sm text-xs max-w-xs space-y-1 shadow-md">
-                  <span className="font-bold font-serif text-sm block">{activeScenario.name}</span>
-                  <p className="text-[10px] text-gray-300">Zona revestida: <span className="text-[#FBFBF9] font-semibold">{simulatorStone.name}</span></p>
-                </div>
-              </div>
-
-              <div className="bg-[#FBFBF9] rounded-sm border border-[#EBEBE4] p-4">
-                <span className="text-[11px] font-mono-data uppercase font-semibold text-gray-400 tracking-wider block mb-3">Paso 2: Elegí una Piedra para Revestir</span>
-                <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
-                  {STONES.map((st) => (
-                    <button
-                      key={st.id}
-                      onClick={() => setSimulatorStone(st)}
-                      className={`flex-shrink-0 flex items-center gap-2 p-2 rounded-sm transition-all border ${simulatorStone.id === st.id
-                        ? 'border-[#3C3830] bg-[#3C3830]/5 ring-1 ring-[#3C3830]'
-                        : 'border-transparent hover:bg-[#F1EFEA]'
-                        }`}
-                    >
-                      <img
-                        src={st.imageUrl}
-                        alt={st.name}
-                        className="w-10 h-10 object-cover rounded-sm"
-                        referrerPolicy="no-referrer"
-                      />
-                      <span className="text-xs font-semibold text-[#3C3830] pr-2 whitespace-nowrap">{st.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-      */}
 
       {/* Dynamic Weight & Material Calculator Section */}
       <section id="calculadora" className="py-20 max-w-7xl mx-auto px-4 sm:px-8">

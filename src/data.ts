@@ -1,4 +1,4 @@
-import { Stone, Scenario } from './types';
+import { Stone } from './types';
 
 export const STONES: Stone[] = [
   {
@@ -14,11 +14,10 @@ export const STONES: Stone[] = [
     installationTip: 'Colocar con junta trabada o semi-seca. Utilizar adhesivo de alta adherencia tipo Impermeable Flex.',
     weightPerM2: 55,
     estimatedPriceIndicator: '●●○',
-    imageUrl: '/images/Riojana/laja-riojana-irregular-de-3-a-6cm.jpg',
+    imageUrl: '/images/Riojana/laja_riojana_irregular.webp',
     galleryUrls: [
-      '/images/Riojana/laja-riojana-irregular-de-3-a-6cm.jpg',
+      '/images/Riojana/laja_riojana_irregular.webp',
       '/images/Riojana/Piedra-Riojana-cortada.webp'
-
     ]
   },
   {
@@ -34,10 +33,10 @@ export const STONES: Stone[] = [
     installationTip: 'Para pisos vehiculares, colocar sobre carpeta de hormigón bien consolidada con mezcla de cemento y arena reforzada.',
     weightPerM2: 65,
     estimatedPriceIndicator: '●●●',
-    imageUrl: '/images/Porfido/Porfido.jpg',
+    imageUrl: '/images/Porfido/porfido_main.webp',
     galleryUrls: [
-      '/images/Porfido/Porfido.jpg',
-      '/images/Porfido/porfido2jpg',
+      '/images/Porfido/porfido_main.webp',
+      '/images/Porfido/porfido2.webp',
       '/images/Porfido/Porfido3.webp',
       '/images/Porfido/Porfido4.webp'
     ]
@@ -55,11 +54,11 @@ export const STONES: Stone[] = [
     installationTip: 'Colocar con juntas de 10mm con mezcla de cemento reforzado o adhesivo flexible.',
     weightPerM2: 58,
     estimatedPriceIndicator: '●●○',
-    imageUrl: '/images/Zapala/Piedra_Zapala1.jpg',
+    imageUrl: '/images/Zapala/piedra_zapala1.webp',
     galleryUrls: [
-      '/images/Zapala/Piedra_Zapala1.jpg',
-      '/images/Zapala/Zapala2.jpg',
-      '/images/Zapala/Zapala3.jpg'
+      '/images/Zapala/piedra_zapala1.webp',
+      '/images/Zapala/zapala2.webp',
+      '/images/Zapala/zapala3.webp'
     ]
   },
   {
@@ -75,13 +74,13 @@ export const STONES: Stone[] = [
     installationTip: 'Se aconseja aplicar un impregnante hidro-oleofugo invisible tras su colocación para proteger su refinado tono beige de la acumulación de humedad.',
     weightPerM2: 52,
     estimatedPriceIndicator: '●●●',
-    imageUrl: '/images/Travertino/Patron-frances-en-travertino-marmol-piso.png',
+    imageUrl: '/images/Travertino/Patron-frances-en-travertino-marmol-piso.webp',
     galleryUrls: [
-      '/images/Travertino/Patron-frances-en-travertino-marmol-piso.png',
+      '/images/Travertino/Patron-frances-en-travertino-marmol-piso.webp',
       '/images/Travertino/travertino exterior.webp',
       '/images/Travertino/travertino interior.webp',
-      '/images/Travertino/Piso-travertino-exterior-e1676562688400.jpg',
-      '/images/Travertino/travertino vivienda.jpg'
+      '/images/Travertino/piso_travertino_exterior.webp',
+      '/images/Travertino/travertino_vivienda.webp'
     ]
   },
   {
@@ -92,7 +91,7 @@ export const STONES: Stone[] = [
     colors: ['Verde oliva apagado', 'Gris verdoso', 'Musgo mineral'],
     texture: 'Placas finas muy resistentes de relieve sutil and uniforme',
     recommendedUses: ['Veredas', 'Entornos de piscina', 'Fachadas modernas', 'Piso galerías abiertas'],
-    description: 'La sobriedad del verde mineralizado San Luis dota de calma y naturalidad a los espacios de transición exterior, funcionando idealmente junto a madera y detalles de vegetación abundante.',
+    description: 'La sobriedad del verde mineralizado San Luis dota de calma y naturalidad a los espacios de transition exterior, funcionando idealmente junto a madera y detalles de vegetación abundante.',
     vibe: 'Moderno, de tintes botánicos y excelente integración con jardines frondosos.',
     installationTip: 'Excelente resistencia al deslizamiento. Ideal para zonas húmedas de piscinas.',
     weightPerM2: 42,
@@ -100,7 +99,7 @@ export const STONES: Stone[] = [
     imageUrl: '/images/san luis/san luis.webp',
     galleryUrls: [
       '/images/san luis/san luis.webp',
-      '/images/san luis/san luis',
+      '/images/san luis/san_luis_laja.webp',
       '/images/san luis/san luis irregular.webp'
     ]
   },
@@ -117,35 +116,11 @@ export const STONES: Stone[] = [
     installationTip: 'Limpiar con un eliminador de salitre suave después de sellar las juntas y dar una protección de laca efecto húmedo opaco.',
     weightPerM2: 48,
     estimatedPriceIndicator: '●●●',
-    imageUrl: '/images/morisca/Morisca.png',
+    imageUrl: '/images/morisca/morisca_main.webp',
     galleryUrls: [
-      '/images/morisca/Morisca.png',
-      '/images/morisca/morisca2.jpg',
-      '/images/morisca/Morisca_Multicolor_05.jpg'
+      '/images/morisca/morisca_main.webp',
+      '/images/morisca/morisca2.webp',
+      '/images/morisca/morisca_multicolor_05.webp'
     ]
-  }
-];
-
-export const SCENARIOS: Scenario[] = [
-  {
-    id: 'living',
-    name: 'Living Familiar / Chimenea',
-    description: 'Ideal para visualizar cómo un revestimiento de piedra aporta calidez hogareña y sofisticación al salón familiar.',
-    bgUrl: '/images/scenario_living.png',
-    overlayClasses: 'absolute top-0 left-[35%] w-[33%] h-full opacity-90 transition-all duration-700 bg-cover bg-center'
-  },
-  {
-    id: 'facade',
-    name: 'Fachada Residencial Moderna',
-    description: 'Comprueba el monumental impacto estético que genera una piedra natural sobre muros exteriores y accesos.',
-    bgUrl: '/images/scenario_facade.png',
-    overlayClasses: 'absolute top-0 right-0 w-[45%] h-[80%] opacity-90 transition-all duration-700 bg-cover bg-center'
-  },
-  {
-    id: 'pool',
-    name: 'Solárium y Piscina',
-    description: 'Espacios exteriores que requieren resistencia mineral, baja conductividad térmica y texturas seguras antideslizantes.',
-    bgUrl: '/images/scenario_pool.png',
-    overlayClasses: 'absolute bottom-0 right-[15%] w-[45%] h-[40%] opacity-90 transition-all duration-700 bg-cover bg-center'
   }
 ];
