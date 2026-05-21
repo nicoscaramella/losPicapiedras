@@ -77,8 +77,8 @@ export default function App() {
 
   // Material and weight calculation handler
   const handleCalculate = () => {
-    const w = parseFloat(widthInput);
-    const h = parseFloat(heightInput);
+    const w = parseFloat(widthInput.replace(',', '.'));
+    const h = parseFloat(heightInput.replace(',', '.'));
     if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) {
       setQuoteResult(null);
       return;
@@ -704,24 +704,40 @@ export default function App() {
                 <div>
                   <label className="block text-xs font-semibold text-[#3C3830] uppercase font-mono-data tracking-wider mb-1.5">Ancho del Muro (m):</label>
                   <input
-                    type="number"
-                    step="0.1"
-                    min="0.1"
+                    type="text"
+                    inputMode="decimal"
                     placeholder="4.5"
                     value={widthInput}
-                    onChange={(e) => setWidthInput(e.target.value)}
+                    onChange={(e) => {
+                      let val = e.target.value.replace(/[^0-9.,]/g, '');
+                      const separatorIndex = val.search(/[.,]/);
+                      if (separatorIndex !== -1) {
+                        const before = val.slice(0, separatorIndex + 1);
+                        const after = val.slice(separatorIndex + 1).replace(/[.,]/g, '');
+                        val = before + after;
+                      }
+                      setWidthInput(val);
+                    }}
                     className="w-full bg-white border border-[#E2DDD2] px-3 py-2 text-sm rounded-sm text-gray-800 focus:outline-none focus:border-stone-500"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-[#3C3830] uppercase font-mono-data tracking-wider mb-1.5">Alto / Largo (m):</label>
                   <input
-                    type="number"
-                    step="0.1"
-                    min="0.1"
+                    type="text"
+                    inputMode="decimal"
                     placeholder="3.0"
                     value={heightInput}
-                    onChange={(e) => setHeightInput(e.target.value)}
+                    onChange={(e) => {
+                      let val = e.target.value.replace(/[^0-9.,]/g, '');
+                      const separatorIndex = val.search(/[.,]/);
+                      if (separatorIndex !== -1) {
+                        const before = val.slice(0, separatorIndex + 1);
+                        const after = val.slice(separatorIndex + 1).replace(/[.,]/g, '');
+                        val = before + after;
+                      }
+                      setHeightInput(val);
+                    }}
                     className="w-full bg-white border border-[#E2DDD2] px-3 py-2 text-sm rounded-sm text-gray-800 focus:outline-none focus:border-stone-500"
                   />
                 </div>
