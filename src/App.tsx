@@ -27,11 +27,11 @@ import { STONES } from './data';
 import { Stone, QuoteResult } from './types';
 
 // Helper function to get active WhatsApp number based on the day of the week
-// Lunes, Miércoles, Viernes -> Ciro (+54 9 11 5736 2228)
-// Martes, Jueves, Sábado, Domingo -> Nicolás (+54 9 11 6664 9075)
+// Lunes, Miércoles, Viernes, Domingo -> Ciro (+54 9 11 5736 2228)
+// Martes, Jueves, Sábado -> Nicolás (+54 9 11 6664 9075)
 function getActiveWhatsAppNumber(): string {
   const day = new Date().getDay(); // 0 = Domingo, 1 = Lunes, 2 = Martes, 3 = Miércoles, 4 = Jueves, 5 = Viernes, 6 = Sábado
-  if (day === 1 || day === 3 || day === 5) {
+  if (day === 0 || day === 1 || day === 3 || day === 5) {
     return '5491157362228'; // Ciro
   } else {
     return '5491166649075'; // Nicolás
@@ -622,6 +622,10 @@ export default function App() {
                         const after = val.slice(separatorIndex + 1).replace(/[.,]/g, '');
                         val = before + after;
                       }
+                      if (val !== '') {
+                        const numericVal = parseFloat(val.replace(',', '.'));
+                        if (!isNaN(numericVal) && numericVal > 1000) val = '1000';
+                      }
                       setWidthInput(val);
                     }}
                     className="w-full bg-white border border-[#E2DDD2] px-3 py-2 text-sm rounded-sm text-gray-800 focus:outline-none focus:border-stone-500"
@@ -641,6 +645,10 @@ export default function App() {
                         const before = val.slice(0, separatorIndex + 1);
                         const after = val.slice(separatorIndex + 1).replace(/[.,]/g, '');
                         val = before + after;
+                      }
+                      if (val !== '') {
+                        const numericVal = parseFloat(val.replace(',', '.'));
+                        if (!isNaN(numericVal) && numericVal > 1000) val = '1000';
                       }
                       setHeightInput(val);
                     }}
