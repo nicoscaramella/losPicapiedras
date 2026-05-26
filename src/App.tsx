@@ -156,7 +156,7 @@ export default function App() {
 
           <div className="flex items-center gap-3 flex-shrink-0">
             <a
-              href={`https://wa.me/${getActiveWhatsAppNumber()}?text=Hola,%20vengo%20de%20la%20landing%20page%20de%20Los%20Picapiedras%20y%20quiero%20consultar%20por%20revestimientos.`}
+              href={`https://wa.me/${getActiveWhatsAppNumber()}?text=Hola,%20vengo%20de%20la%20web%20de%20Los%20Picapiedras%20y%20quiero%20consultar%20por%20revestimientos.`}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#3C3830] hover:bg-[#524E43] text-[#FBFBF9] px-3 sm:px-4 py-2 text-xs font-semibold tracking-wide rounded-sm flex items-center gap-2 transition-all shadow-sm"
@@ -769,7 +769,7 @@ export default function App() {
 
                   {/* WhatsApp Pre-charged Quote CTA */}
                   <a
-                    href={`https://wa.me/${getActiveWhatsAppNumber()}?text=Hola!%20Por%20favor%20cotizarme%20formalmente%20revestimiento%20en%20piedra:%20${encodeURIComponent(quoteResult.stoneName)}%20para%20una%20superficie%20de%20${quoteResult.areaM2}%20m2,%20incluyendo%20${quoteResult.adhesiveBags}%20bolsas%20de%20adhesivo.`}
+                    href={`https://wa.me/${getActiveWhatsAppNumber()}?text=Hola!%20Por%20favor%20cotizar%20formalmente%20revestimiento%20en%20piedra:%20${encodeURIComponent(quoteResult.stoneName)}%20para%20una%20superficie%20de%20${quoteResult.areaM2}%20m2,%20incluyendo%20${quoteResult.adhesiveBags}%20bolsas%20de%20adhesivo.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto bg-[#FBFBF9] hover:bg-[#EBEBE4] text-[#3C3830] hover:text-black py-2.5 px-5 rounded-sm text-xs font-semibold tracking-wide transition-all uppercase flex items-center justify-center gap-1.5 shadow-sm"
