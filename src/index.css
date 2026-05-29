@@ -1,34 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Albert Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Marcellus", Georgia, serif;
+  
+  --color-brand-bg: oklch(0.97 0.01 90);
+  --color-brand-surface: oklch(0.94 0.01 90);
+  --color-brand-ink: oklch(0.2 0.01 90);
+  --color-brand-ink-muted: oklch(0.4 0.01 90);
+  --color-brand-accent: oklch(0.65 0.12 45);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-bg);
+    color: var(--color-brand-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
 }
 
 /* Custom scrollbar and ambient styles */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f7f7f7;
+  background: var(--color-brand-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 4px;
+  background: var(--color-brand-ink-muted);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
-}
-
-.font-serif-luxury {
-  font-family: var(--font-serif);
-}
-
-.font-mono-data {
-  font-family: var(--font-mono);
+  background: var(--color-brand-ink);
 }
