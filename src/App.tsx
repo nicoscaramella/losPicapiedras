@@ -182,11 +182,12 @@ export default function App() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#3C3830] font-bold tracking-tight leading-none">
+              <span className="sr-only">Los Picapiedras Berazategui - Venta de Lajas y Revestimientos. </span>
               La nobleza de la <span className="italic relative z-10 font-normal underline decoration-[#C6BBA8] decoration-wavy decoration-2">piedra natural</span> para vestir tus espacios
             </h1>
 
             <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl">
-              Nuestra familia se dedica a la selección de revestimientos de piedras naturales únicas. Auténtico Pórfido Patagónico, sofisticado Mármol Travertino, rústica Piedra Zapala, cálida Riojana y la tradicional Laja San Luis para frentes y pisos de alto tránsito.
+              En <strong>Los Picapiedras Berazategui</strong> nos dedicamos a la venta y selección de revestimientos de piedras naturales. Encontrá el auténtico Pórfido Patagónico, sofisticado Mármol Travertino, rústica Piedra Zapala, cálida Riojana y la tradicional Laja San Luis para frentes, fachadas y pisos de alto tránsito en toda la zona.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -228,7 +229,7 @@ export default function App() {
             <div className="relative z-10 rounded-sm overflow-hidden h-[320px] sm:h-[450px] shadow-2xl border-4 border-[#FBFBF9]">
               <img
                 src='/images/Travertino/travertino_vivienda.webp'
-                alt="Casa moderna con revestimiento de piedras naturales"
+                alt="Fachada de casa en Berazategui con revestimiento de Mármol Travertino y piedra natural"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
                 id="hero_main_img"
@@ -276,7 +277,7 @@ export default function App() {
       <section id="catalogo" className="py-20 max-w-7xl mx-auto px-4 sm:px-8">
         <div className="flex flex-col md:flex-row items-baseline justify-between mb-10 pb-4 border-b border-[#EBEBE4]">
           <div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#3C3830]" id="catalogo-titulo">Nuestro Catálogo de Piedras</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#3C3830]" id="catalogo-titulo">Catálogo de Lajas y Piedras en Berazategui</h2>
             <p className="text-gray-500 text-sm mt-1">Navegá entre nuestras variedades exclusivas de áridos, lajas y sillares.</p>
           </div>
 
@@ -320,7 +321,7 @@ export default function App() {
                 <div className="h-48 relative overflow-hidden bg-gray-100">
                   <img
                     src={stone.imageUrl}
-                    alt={stone.name}
+                    alt={`Laja y Revestimiento de ${stone.name} para frentes y pisos`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transformation duration-500"
                     referrerPolicy="no-referrer"
                     loading="lazy"
